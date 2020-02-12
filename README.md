@@ -4,18 +4,26 @@ A sexy CLI to easily configure 301 redirects from a CSV
 ## Installation
 > stuff will go here
 
-## Guide
-### Quickstart
+## Quickstart
 ```bash
-./redirex generate --I="~/redirects.csv" --O="~/redirects.txt" --F="foo" --R="bar"
+./redirex generate ~/redirects.csv --O="~/redirects.txt" --F="foo" --R="bar"
 ```
 
-### Commands
-| Flag      | Description                                                                                                    | Shorthand | Default                    |
-|-----------|----------------------------------------------------------------------------------------------------------------|-----------|----------------------------|
-| --output  | Absolute path to where the resulting text file will be stored                                                  | --O       | `~/.redirex/redirects.txt` |
-| --find    | Pattern to find in the resulting document. You may pass as many `--find` flags as you need.                    | --F       | null                       |
-| --replace | String to replace the pattern. **Note: each** `--find` **flag must have a corresponding** `--replace` **flag** | --R       | null                       |
+## Commands
+### `generate`
+Responsible for generating the 301 redirect text document. Accepts one argument -- the path to the .csv file used to create the redirects.
+#### Flags
+> --output, --O
+
+Absolute path to where the resulting text file will be stored
+
+> --find, --F
+
+Pattern to find in the resulting document. You may pass as many `--find` flags as you need.
+
+> --replace, --R
+
+String to replace the pattern. **Note: each** `--find` **flag must have a corresponding** `--replace` **flag**
 
 ------
 ## Support the development
