@@ -2,7 +2,6 @@
 
 namespace App\Commands;
 
-use Illuminate\Console\Scheduling\Schedule;
 use LaravelZero\Framework\Commands\Command;
 
 class GenerateCommand extends Command
@@ -13,7 +12,7 @@ class GenerateCommand extends Command
      * @var string
      */
     protected $signature = 'generate
-        {--I|input= : Path to the csv file used to generate the redirects}
+        {csv : Path to the csv file used to generate the redirects}
         {--O|output=redirects.txt : Where the redirects.txt file will be stored}
         {--F|find=* : Pattern to search for}
         {--R|replace=* : Replace the pattern}';
@@ -32,7 +31,7 @@ class GenerateCommand extends Command
      */
     public function handle()
     {
-        $input = $this->option('input');
+        $input = $this->argument('csv');
         $output = $this->option('output');
         $rows = array_slice(array_map('str_getcsv', file($input)), 3);
         $goodRedirects = '';
@@ -55,16 +54,5 @@ class GenerateCommand extends Command
         }
 
         file_put_contents($output, $goodRedirects);
-    }
-
-    /**
-     * Define the command's schedule.
-     *
-     * @param  \Illuminate\Console\Scheduling\Schedule $schedule
-     * @return void
-     */
-    public function schedule(Schedule $schedule): void
-    {
-        // $schedule->command(static::class)->everyMinute();
     }
 }
