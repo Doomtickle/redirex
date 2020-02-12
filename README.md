@@ -13,6 +13,8 @@ A sexy CLI to easily configure 301 redirects from a CSV
 ### `generate`
 Responsible for generating the 301 redirect text document. Accepts one argument -- the path to the .csv file used to create the redirects.
 #### Flags
+Optional flags to pass to the application
+
 `--output`, `--O`
 Absolute path to where the resulting text file will be stored
 
