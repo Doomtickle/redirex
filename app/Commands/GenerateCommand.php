@@ -14,14 +14,16 @@ class GenerateCommand extends Command
      */
     protected $signature = 'generate
         {--I|input= : Path to the csv file used to generate the redirects}
-        {--O|output=redirects.txt : Where the redirects.txt file will be stored}';
+        {--O|output=redirects.txt : Where the redirects.txt file will be stored}
+        {--F|find=* : Pattern to search for}
+        {--R|replace=* : Replace the pattern}';
 
     /**
      * The description of the command.
      *
      * @var string
      */
-    protected $description = 'CLI to generate 301 redirect for Wray Ward';
+    protected $description = 'CLI to generate 301 redirects for Wray Ward';
 
     /**
      * Execute the console command.
@@ -34,22 +36,21 @@ class GenerateCommand extends Command
         $output = $this->option('output');
         $rows = array_slice(array_map('str_getcsv', file($input)), 3);
         $goodRedirects = '';
-        $counter = 0;
-        $pattern = '';
-        $replacement = '';
+        $find = array_map(function ($pattern) {
+                return "%${pattern}%";
+        }, $this->option('find'));
+        $replace = array_map(function ($replacement) {
+                return "${replacement}";
+        }, $this->option('replace'));
 
-        if ($this->confirm('Would you like to see a preview of your file?', true)) {
-            $this->line($rows[0][6]);
-            if ($this->confirm('Would you like to replace anything?')) {
-                $pattern = $this->ask('What do you want to replace?');
-                $replacement = $this->ask('What do you want to replace it with?');
-            }
-        }
         foreach ($rows as $row) {
             $redirect = trim($row[6]);
             if (strlen($redirect) > 12) {
-                $parsed = preg_replace("/${pattern}/", $replacement, $redirect);
-                $goodRedirects .= $parsed . PHP_EOL;
+                $parsed = preg_replace($find, $replace, $redirect);
+                $exploded = explode(' ', $parsed);
+                $exploded[1] .= '$';
+                $fullString = implode(' ', $exploded);
+                $goodRedirects .= $fullString . ' [R=301,QSA,L]' . PHP_EOL;
             }
         }
 
