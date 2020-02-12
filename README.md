@@ -11,11 +11,11 @@ A sexy CLI to easily configure 301 redirects from a CSV
 ```
 
 ### Commands
-| Flag      | Description                                                                                          | Shorthand | Default                  |
-|-----------|------------------------------------------------------------------------------------------------------|-----------|--------------------------|
-| --output  | Absolute path to where the resulting text file will be stored                                        | --O       | ~/.redirex/redirects.txt |
-| --find    | Pattern to find in the resulting document. You may pass as many `--find` flags as you need.          | --F       | null                     |
-| --replace | String to replace the pattern. *Note: each `--find` flag must have a corresponding `--replace` flag* | --R       | null                     |
+| Flag      | Description                                                                                            | Shorthand | Default                  |
+|-----------|--------------------------------------------------------------------------------------------------------|-----------|--------------------------|
+| --output  | Absolute path to where the resulting text file will be stored                                          | --O       | ~/.redirex/redirects.txt |
+| --find    | Pattern to find in the resulting document. You may pass as many `--find` flags as you need.            | --F       | null                     |
+| --replace | String to replace the pattern. **Note: each `--find` flag must have a corresponding `--replace` flag** | --R       | null                     |
 
 ------
 ## Support the development
