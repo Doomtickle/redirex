@@ -13,14 +13,17 @@ A sexy CLI to easily configure 301 redirects from a CSV
 ### `generate`
 Responsible for generating the 301 redirect text document. Accepts one argument -- the path to the .csv file used to create the redirects.
 #### Flags
-> --output, --O
-Absolute path to where the resulting text file will be stored
+* --output, --O
 
-> --find, --F
-Pattern to find in the resulting document. You may pass as many `--find` flags as you need.
+    Absolute path to where the resulting text file will be stored
 
-> --replace, --R
-String to replace the pattern. **Note: each** `--find` **flag must have a corresponding** `--replace` **flag**
+* --find, --F
+
+    Pattern to find in the resulting document. You may pass as many `--find` flags as you need.
+
+* --replace, --R
+
+    String to replace the pattern. **Note: each** `--find` **flag must have a corresponding** `--replace` **flag**
 
 ------
 ## Support the development
